@@ -1,6 +1,8 @@
 module Spec
   module Mocks
     module Methods
+      MOCKS = {}
+
       def should_receive(sym, opts={}, &block)
         __mock_proxy.add_message_expectation(opts[:expected_from] || caller(1)[0], sym.to_sym, opts, &block)
       end
@@ -85,6 +87,8 @@ module Spec
       def __mock_proxy
         if Mock === self
           @mock_proxy ||= Proxy.new(self, @name, @options)
+        elsif frozen?
+          MOCKS[self] ||= Proxy.new(self)
         else
           @mock_proxy ||= Proxy.new(self)
         end
