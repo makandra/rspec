@@ -146,7 +146,7 @@ module Spec
 
         lib_path = libs.join(File::PATH_SEPARATOR)
         actual_name = Hash === name ? name.keys.first : name
-        unless ::Rake.application.last_comment
+        unless defined?(::Rake.application.last_description) ? ::Rake.application.last_description : ::Rake.application.last_comment
           desc "Run specs" + (rcov ? " using RCov" : "")
         end
         task name do
@@ -182,11 +182,11 @@ module Spec
 
         if rcov
           desc "Remove rcov products for #{actual_name}"
-          task paste("clobber_", actual_name) do
+          clobber_task = :"clobber_#{actual_name}"
+          task clobber_task do
             rm_r rcov_dir rescue nil
           end
 
-          clobber_task = paste("clobber_", actual_name)
           task :clobber => [clobber_task]
 
           task actual_name => clobber_task
