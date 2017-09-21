@@ -257,7 +257,7 @@ module Spec
       end
 
       def which_heckle_runner
-        ([/mswin/, /java/].detect{|p| p =~ RUBY_PLATFORM} || Spec::Ruby.version.to_f == 1.9) ? "spec/runner/heckle_runner_unsupported" : "spec/runner/heckle_runner"
+        ([/mswin/, /java/].detect{|p| p =~ RUBY_PLATFORM} || Spec::Ruby.version.to_f >= 1.9) ? "spec/runner/heckle_runner_unsupported" : "spec/runner/heckle_runner"
       end
 
       def load_heckle_runner(heckle)
