@@ -177,15 +177,15 @@ describe "Diff in context format" do
 
 ***************
 *** 1,5 ****
-  <Animal
-    name=bob,
-!   species=tortoise
-  >
+ <Animal
+   name=bob,
+!  species=tortoise
+ >
 --- 1,5 ----
-  <Animal
-    name=bob,
-!   species=giraffe
-  >
+ <Animal
+   name=bob,
+!  species=giraffe
+ >
 EOD
 
     diff = @differ.diff_as_object(expected,actual)
