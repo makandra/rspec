@@ -4,6 +4,8 @@ require 'rbconfig'
 module Spec
   module Runner
     class Options
+      Config = defined?(::RbConfig) ? ::RbConfig : ::Config
+
       FILE_SORTERS = {
         'mtime' => lambda {|file_a, file_b| File.mtime(file_b) <=> File.mtime(file_a)}
       }
