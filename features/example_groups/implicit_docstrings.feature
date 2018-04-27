@@ -57,3 +57,8 @@ Feature: implicit docstrings
     And the stdout should include /should be > 5/
     And the stdout should include /should include "b"/
     And the stdout should include /should not respond to #size/
+
+  Scenarios: Run with ruby and spec
+    | Command |
+    | ruby    |
+    | spec    |
